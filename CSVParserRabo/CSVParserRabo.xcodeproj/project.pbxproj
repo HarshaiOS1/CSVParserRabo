@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3179542C05280900C35511 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1D3179532C05280900C35511 /* SwiftCSV */; };
+		1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3179592C052AD700C35511 /* CSVParserViewModel.swift */; };
 		1D35DD412C04D7C1001484D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD402C04D7C1001484D0 /* AppDelegate.swift */; };
 		1D35DD432C04D7C1001484D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD422C04D7C1001484D0 /* SceneDelegate.swift */; };
 		1D35DD452C04D7C1001484D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD442C04D7C1001484D0 /* ViewController.swift */; };
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D3179592C052AD700C35511 /* CSVParserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserViewModel.swift; sourceTree = "<group>"; };
 		1D35DD3D2C04D7C1001484D0 /* CSVParserRabo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSVParserRabo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D35DD402C04D7C1001484D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D35DD422C04D7C1001484D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D3179542C05280900C35511 /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +80,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D3179562C052A9100C35511 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1D3179592C052AD700C35511 /* CSVParserViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1D3179572C052A9700C35511 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1D3179582C052AA500C35511 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D35DD442C04D7C1001484D0 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1D35DD342C04D7C1001484D0 = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +128,9 @@
 			children = (
 				1D35DD402C04D7C1001484D0 /* AppDelegate.swift */,
 				1D35DD422C04D7C1001484D0 /* SceneDelegate.swift */,
-				1D35DD442C04D7C1001484D0 /* ViewController.swift */,
+				1D3179572C052A9700C35511 /* Model */,
+				1D3179582C052AA500C35511 /* View */,
+				1D3179562C052A9100C35511 /* ViewModel */,
 				1D35DD462C04D7C1001484D0 /* Main.storyboard */,
 				1D35DD492C04D7C3001484D0 /* Assets.xcassets */,
 				1D35DD4B2C04D7C3001484D0 /* LaunchScreen.storyboard */,
@@ -143,6 +172,9 @@
 			dependencies = (
 			);
 			name = CSVParserRabo;
+			packageProductDependencies = (
+				1D3179532C05280900C35511 /* SwiftCSV */,
+			);
 			productName = CSVParserRabo;
 			productReference = 1D35DD3D2C04D7C1001484D0 /* CSVParserRabo.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +247,9 @@
 				Base,
 			);
 			mainGroup = 1D35DD342C04D7C1001484D0;
+			packageReferences = (
+				1D3179522C05280900C35511 /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+			);
 			productRefGroup = 1D35DD3E2C04D7C1001484D0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */,
 				1D35DD452C04D7C1001484D0 /* ViewController.swift in Sources */,
 				1D35DD412C04D7C1001484D0 /* AppDelegate.swift in Sources */,
 				1D35DD432C04D7C1001484D0 /* SceneDelegate.swift in Sources */,
@@ -601,6 +637,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D3179522C05280900C35511 /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D3179532C05280900C35511 /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D3179522C05280900C35511 /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D35DD352C04D7C1001484D0 /* Project object */;
 }
