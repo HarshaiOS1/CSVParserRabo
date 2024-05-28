@@ -9,17 +9,19 @@ import Foundation
 import SwiftCSV
 
 class CSVParserViewModel: NSObject {
+    var csvData: CSVData?
     
-    func getCSVTableData(filePath: String) async throws -> ([CSVRow]?, String?) {
-        if let url = URL(string: filePath) {
-            do {
-                let row = try await CSVParser.parse(contentsOf: url)
-            } catch let err {
-                return (nil, err.localizedDescription)
+    func getCSVTableData(filePath: URL) async throws -> Bool {
+        do {
+            let rows = try await CSVParser.parse(contentsOf: filePath)
+            if rows.count > 0 {
+                csvData = CSVData(rows: rows)
+                return true
+            } else {
+                return false
             }
-            return (nil,"Invalid file path")
-        } else {
-            return (nil,"Invalid file path")
+        } catch _ {
+            return false
         }
     }
 }
