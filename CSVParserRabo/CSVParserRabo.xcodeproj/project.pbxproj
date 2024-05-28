@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1D3179542C05280900C35511 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1D3179532C05280900C35511 /* SwiftCSV */; };
 		1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3179592C052AD700C35511 /* CSVParserViewModel.swift */; };
+		1D31795D2C052B9800C35511 /* issues.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1D31795C2C052B9800C35511 /* issues.csv */; };
+		1D31795F2C05C21F00C35511 /* CSVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D31795E2C05C21F00C35511 /* CSVModel.swift */; };
+		1D3179622C05E17300C35511 /* CSVDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D3179612C05E17300C35511 /* CSVDataCell.xib */; };
+		1D3179642C05E18800C35511 /* CSVDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3179632C05E18800C35511 /* CSVDataCell.swift */; };
 		1D35DD412C04D7C1001484D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD402C04D7C1001484D0 /* AppDelegate.swift */; };
 		1D35DD432C04D7C1001484D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD422C04D7C1001484D0 /* SceneDelegate.swift */; };
 		1D35DD452C04D7C1001484D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD442C04D7C1001484D0 /* ViewController.swift */; };
@@ -39,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		1D3179592C052AD700C35511 /* CSVParserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserViewModel.swift; sourceTree = "<group>"; };
+		1D31795C2C052B9800C35511 /* issues.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = issues.csv; sourceTree = "<group>"; };
+		1D31795E2C05C21F00C35511 /* CSVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVModel.swift; sourceTree = "<group>"; };
+		1D3179612C05E17300C35511 /* CSVDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSVDataCell.xib; sourceTree = "<group>"; };
+		1D3179632C05E18800C35511 /* CSVDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataCell.swift; sourceTree = "<group>"; };
 		1D35DD3D2C04D7C1001484D0 /* CSVParserRabo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSVParserRabo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D35DD402C04D7C1001484D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D35DD422C04D7C1001484D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +99,7 @@
 		1D3179572C052A9700C35511 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1D31795E2C05C21F00C35511 /* CSVModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,9 +107,27 @@
 		1D3179582C052AA500C35511 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D3179602C05E15D00C35511 /* TableViewCell */,
 				1D35DD442C04D7C1001484D0 /* ViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1D31795B2C052B8800C35511 /* Utils  */ = {
+			isa = PBXGroup;
+			children = (
+				1D31795C2C052B9800C35511 /* issues.csv */,
+			);
+			path = "Utils ";
+			sourceTree = "<group>";
+		};
+		1D3179602C05E15D00C35511 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1D3179612C05E17300C35511 /* CSVDataCell.xib */,
+				1D3179632C05E18800C35511 /* CSVDataCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		1D35DD342C04D7C1001484D0 = {
@@ -131,6 +158,7 @@
 				1D3179572C052A9700C35511 /* Model */,
 				1D3179582C052AA500C35511 /* View */,
 				1D3179562C052A9100C35511 /* ViewModel */,
+				1D31795B2C052B8800C35511 /* Utils  */,
 				1D35DD462C04D7C1001484D0 /* Main.storyboard */,
 				1D35DD492C04D7C3001484D0 /* Assets.xcassets */,
 				1D35DD4B2C04D7C3001484D0 /* LaunchScreen.storyboard */,
@@ -266,9 +294,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D31795D2C052B9800C35511 /* issues.csv in Resources */,
 				1D35DD4A2C04D7C3001484D0 /* Assets.xcassets in Resources */,
 				1D35DD4D2C04D7C3001484D0 /* Base in Resources */,
 				1D35DD482C04D7C1001484D0 /* Base in Resources */,
+				1D3179622C05E17300C35511 /* CSVDataCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +326,8 @@
 				1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */,
 				1D35DD452C04D7C1001484D0 /* ViewController.swift in Sources */,
 				1D35DD412C04D7C1001484D0 /* AppDelegate.swift in Sources */,
+				1D31795F2C05C21F00C35511 /* CSVModel.swift in Sources */,
+				1D3179642C05E18800C35511 /* CSVDataCell.swift in Sources */,
 				1D35DD432C04D7C1001484D0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
