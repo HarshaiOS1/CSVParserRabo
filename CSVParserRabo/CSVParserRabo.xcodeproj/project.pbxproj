@@ -510,8 +510,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7629MSRK2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CSVParserRabo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = UISupportsDocumentBrowser;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -537,8 +539,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K7629MSRK2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CSVParserRabo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = UISupportsDocumentBrowser;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

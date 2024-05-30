@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UniformTypeIdentifiers
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -20,10 +21,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func localReadButtonAction(_ sender: Any) {
+        if let fileURL = Bundle.main.url(forResource: "issues", withExtension: "csv") {
+            loadFileData(fileurl: fileURL)
+        }
+    }
+    
+    @IBAction func uploadCSVButtonAction(_ sender: Any) {
+        openDocumentPicker()
+    }
+    
+    func loadFileData(fileurl: URL) {
         Task {
-            let fileURL = Bundle.main.url(forResource: "issues", withExtension: "csv")!
             do {
-                let result = try await viewModel.getCSVTableData(filePath: fileURL)
+                let result = try await viewModel.getCSVTableData(filePath: fileurl)
                 if result {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -37,8 +47,11 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func uploadCSVButtonAction(_ sender: Any) {
-        //open file to read file
+    @objc func openDocumentPicker() {
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.commaSeparatedText, UTType.content, UTType.plainText])
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        present(documentPicker, animated: true, completion: nil)
     }
     
     func updateUI() {
@@ -72,5 +85,27 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
+    }
+}
+
+//MARK: UIDocumentPickerDelegate
+extension ViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let selectedFileURL = urls.first else { return }
+        print(selectedFileURL)
+        if (selectedFileURL.pathExtension != "numbers") {
+            print("Not .csv file type")
+            return
+        }
+        if let originalURL = URL(string: "file:///path/to/file.numbers") {
+            let newURL = originalURL.changingFileExtension(to: "csv")
+            print("Original URL: \(originalURL)")
+            print("New URL: \(newURL)")
+            loadFileData(fileurl: newURL)
+        }
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print("Document picker was cancelled")
     }
 }

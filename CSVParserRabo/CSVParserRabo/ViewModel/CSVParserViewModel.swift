@@ -43,3 +43,9 @@ struct CSVParser {
         return rows
     }
 }
+
+extension URL {
+    func changingFileExtension(to newExtension: String) -> URL {
+        return self.deletingPathExtension().appendingPathExtension(newExtension)
+    }
+}
