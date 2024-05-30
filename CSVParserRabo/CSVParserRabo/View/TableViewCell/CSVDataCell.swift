@@ -23,6 +23,7 @@ class CSVDataCell: UITableViewCell {
             label.numberOfLines = 0
             label.text = column.replacingOccurrences(of: "\"", with: "")
             label.textAlignment = .center
+            label.addRightBorder(with: .separator, andWidth: 0.5)
             stackView.addArrangedSubview(label)
         }
     }

@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     @IBAction func localReadButtonAction(_ sender: Any) {
         if let fileURL = Bundle.main.url(forResource: "issues", withExtension: "csv") {
             loadFileData(fileurl: fileURL)
+        } else {
+            showAlert(title: "Error", message: "invalid filepath")
         }
     }
     
@@ -34,17 +36,25 @@ class ViewController: UIViewController {
         Task {
             do {
                 let result = try await viewModel.getCSVTableData(filePath: fileurl)
+                viewModel.clearTemporaryDirectory()
                 if result {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 } else {
-                    print("Error parsing CSV")
+                    showAlert(title: "Error", message: "Error parsing CSV")
                 }
             } catch {
-                print("Error parsing CSV: \(error)")
+                showAlert(title: "Error", message: "Error parsing : \(error)")
             }
         }
+    }
+    
+    func showAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func openDocumentPicker() {
@@ -92,16 +102,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let selectedFileURL = urls.first else { return }
-        print(selectedFileURL)
-        if (selectedFileURL.pathExtension != "numbers") {
-            print("Not .csv file type")
+        
+        if (selectedFileURL.pathExtension != "numbers" || selectedFileURL.pathExtension != "csv") {
+            showAlert(title: "Error", message: "Not .csv file type")
             return
         }
-        if let originalURL = URL(string: "file:///path/to/file.numbers") {
-            let newURL = originalURL.changingFileExtension(to: "csv")
-            print("Original URL: \(originalURL)")
-            print("New URL: \(newURL)")
-            loadFileData(fileurl: newURL)
+        let result = viewModel.tempSaveFile(selectedFileURL: selectedFileURL)
+        if let url = result.0 {
+            loadFileData(fileurl: url)
+        } else  {
+            showAlert(title: "Error", message: result.1 ?? "error reading file")
         }
     }
     

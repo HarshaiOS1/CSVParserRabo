@@ -10,6 +10,7 @@ import SwiftCSV
 
 class CSVParserViewModel: NSObject {
     var csvData: CSVData?
+    let tempDirectory = FileManager.default.temporaryDirectory
     
     func getCSVTableData(filePath: URL) async throws -> Bool {
         do {
@@ -22,6 +23,33 @@ class CSVParserViewModel: NSObject {
             }
         } catch _ {
             return false
+        }
+    }
+    
+    func tempSaveFile(selectedFileURL: URL) -> (URL?,String?){
+        
+        let newFileName = selectedFileURL.deletingPathExtension().lastPathComponent + ".csv"
+        let tempFileURL = tempDirectory.appendingPathComponent(newFileName)
+        do {
+            try FileManager.default.copyItem(at: selectedFileURL, to: tempFileURL)
+            return(tempFileURL, nil)
+        } catch {
+            
+            return(nil, error.localizedDescription)
+        }
+    }
+    
+    func clearTemporaryDirectory() {
+        do {
+            let tempFiles = try FileManager.default.contentsOfDirectory(atPath: tempDirectory.path)
+            for file in tempFiles {
+                let fileURL = tempDirectory.appendingPathComponent(file)
+                try FileManager.default.removeItem(at: fileURL)
+                print("Deleted file: \(file)")
+            }
+            print("Temporary directory cleaned successfully.")
+        } catch {
+            print("Error cleaning temporary directory: \(error.localizedDescription)")
         }
     }
 }
