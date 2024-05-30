@@ -20,6 +20,12 @@ class ViewController: UIViewController {
         updateUI()
     }
     
+    func updateUI() {
+        tableView.register(UINib.init(nibName: "CSVDataCell", bundle: nil), forCellReuseIdentifier: "CSVDataCell")
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     @IBAction func localReadButtonAction(_ sender: Any) {
         if let fileURL = Bundle.main.url(forResource: "issues", withExtension: "csv") {
             loadFileData(fileurl: fileURL)
@@ -58,17 +64,12 @@ class ViewController: UIViewController {
     }
     
     @objc func openDocumentPicker() {
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.commaSeparatedText, UTType.content, UTType.plainText])
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes:  [UTType.commaSeparatedText])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         present(documentPicker, animated: true, completion: nil)
     }
     
-    func updateUI() {
-        tableView.register(UINib.init(nibName: "CSVDataCell", bundle: nil), forCellReuseIdentifier: "CSVDataCell")
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
 }
 
 //MARK: UITableViewDelegate & UITableViewDataSource
@@ -102,9 +103,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let selectedFileURL = urls.first else { return }
-        
-        if (selectedFileURL.pathExtension != "numbers" || selectedFileURL.pathExtension != "csv") {
-            showAlert(title: "Error", message: "Not .csv file type")
+        if !(selectedFileURL.pathExtension == "csv") {
+            showAlert(title: "Error", message: "Please select .csv file type")
             return
         }
         let result = viewModel.tempSaveFile(selectedFileURL: selectedFileURL)
@@ -116,6 +116,6 @@ extension ViewController: UIDocumentPickerDelegate {
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        print("Document picker was cancelled")
+        showAlert(title: "Alert", message: "Cancelled with out selecting file")
     }
 }
