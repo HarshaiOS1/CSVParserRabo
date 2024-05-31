@@ -7,6 +7,7 @@
 
 import UIKit
 import UniformTypeIdentifiers
+import WebKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -14,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var uploadCSVButton: UIButton!
     
     var viewModel = CSVParserViewModel()
+    var fileURL: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +42,17 @@ class ViewController: UIViewController {
     }
     
     func loadFileData(fileurl: URL) {
+        self.fileURL = fileurl
         Task {
             do {
                 let result = try await viewModel.getCSVTableData(filePath: fileurl)
-                viewModel.clearTemporaryDirectory()
+                if (viewModel.csvData?.rows.last?.columns.count ?? 0) > 6 {
+                    let leftBarButtonItem = UIBarButtonItem(title: "Detail View", style: .plain, target: self, action: #selector(rightBarButtonTapped))
+                    navigationItem.rightBarButtonItem = leftBarButtonItem
+                } else {
+                    viewModel.clearTemporaryDirectory()
+                    navigationItem.rightBarButtonItem = nil
+                }
                 if result {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -53,6 +62,16 @@ class ViewController: UIViewController {
                 }
             } catch {
                 showAlert(title: "Error", message: "Error parsing : \(error)")
+            }
+        }
+    }
+    
+    @objc func rightBarButtonTapped() {
+        if let filePath = fileURL {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "WebDetailViewController") as? WebDetailViewController {
+                vc.fileURL = filePath
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
@@ -69,6 +88,11 @@ class ViewController: UIViewController {
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         present(documentPicker, animated: true, completion: nil)
+    }
+    
+    deinit {
+        print("deinit - ViewContoller")
+        viewModel.clearTemporaryDirectory()
     }
     
 }
@@ -105,6 +129,7 @@ extension ViewController: UIDocumentPickerDelegate {
             showAlert(title: "Error", message: "Please select .csv file type")
             return
         }
+        viewModel.clearTemporaryDirectory()
         let result = viewModel.tempSaveFile(selectedFileURL: selectedFileURL)
         if let url = result.0 {
             loadFileData(fileurl: url)

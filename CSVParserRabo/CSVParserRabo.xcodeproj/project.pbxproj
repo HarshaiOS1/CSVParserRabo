@@ -22,6 +22,7 @@
 		1D35DD582C04D7C3001484D0 /* CSVParserRaboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD572C04D7C3001484D0 /* CSVParserRaboTests.swift */; };
 		1D35DD622C04D7C3001484D0 /* CSVParserRaboUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD612C04D7C3001484D0 /* CSVParserRaboUITests.swift */; };
 		1D35DD642C04D7C3001484D0 /* CSVParserRaboUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35DD632C04D7C3001484D0 /* CSVParserRaboUITestsLaunchTests.swift */; };
+		1D3AC5ED2C09E6CD00040B09 /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3AC5EC2C09E6CD00040B09 /* WebDetailViewController.swift */; };
 		1D9319B02C08B9AC0034E778 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9319AF2C08B9AC0034E778 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		1D35DD5D2C04D7C3001484D0 /* CSVParserRaboUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSVParserRaboUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D35DD612C04D7C3001484D0 /* CSVParserRaboUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserRaboUITests.swift; sourceTree = "<group>"; };
 		1D35DD632C04D7C3001484D0 /* CSVParserRaboUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserRaboUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1D3AC5EC2C09E6CD00040B09 /* WebDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDetailViewController.swift; sourceTree = "<group>"; };
 		1D9319AF2C08B9AC0034E778 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			children = (
 				1D3179602C05E15D00C35511 /* TableViewCell */,
 				1D35DD442C04D7C1001484D0 /* ViewController.swift */,
+				1D3AC5EC2C09E6CD00040B09 /* WebDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			files = (
 				1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */,
 				1D35DD452C04D7C1001484D0 /* ViewController.swift in Sources */,
+				1D3AC5ED2C09E6CD00040B09 /* WebDetailViewController.swift in Sources */,
 				1D35DD412C04D7C1001484D0 /* AppDelegate.swift in Sources */,
 				1D9319B02C08B9AC0034E778 /* UIViewExtension.swift in Sources */,
 				1D31795F2C05C21F00C35511 /* CSVModel.swift in Sources */,
