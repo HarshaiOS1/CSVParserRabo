@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
+        self.title = "Rabo CSV Parser"
         tableView.register(UINib.init(nibName: "CSVDataCell", bundle: nil), forCellReuseIdentifier: "CSVDataCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -79,17 +80,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell.init(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.width, height: 50.0))
-        if viewModel.csvData?.rows.count ?? 0 == 0 {
-            cell.textLabel?.text = "No data to display"
-            return cell
-        }
         guard let cell: CSVDataCell = tableView.dequeueReusableCell(withIdentifier: "CSVDataCell", for: indexPath) as? CSVDataCell else {
             return UITableViewCell.init()
         }
-        
+        cell.selectionStyle = .none
         if let row = viewModel.csvData?.rows[indexPath.row] {
             cell.updateRow(row: row)
+        } else {
+            cell.updateRow(row: CSVRow(columns: ["No data to display, Please select .csv file"]))
         }
         return cell
     }
