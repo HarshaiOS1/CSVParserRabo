@@ -66,7 +66,6 @@ struct CSVParser {
         guard let content = String(data: data, encoding: .utf8) else {
             throw NSError(domain: "CSVParser", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unable to decode data to string."])
         }
-        
         let lines = content.components(separatedBy: .newlines).filter { !$0.isEmpty }
         var rows: [CSVRow] = []
         for line in lines {
@@ -74,11 +73,5 @@ struct CSVParser {
             rows.append(CSVRow(columns: columns))
         }
         return rows
-    }
-}
-
-extension URL {
-    func changingFileExtension(to newExtension: String) -> URL {
-        return self.deletingPathExtension().appendingPathExtension(newExtension)
     }
 }
