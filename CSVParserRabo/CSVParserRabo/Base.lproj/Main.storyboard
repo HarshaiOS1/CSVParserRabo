@@ -68,6 +68,40 @@
             </objects>
             <point key="canvasLocation" x="901.52671755725191" y="3.5211267605633805"/>
         </scene>
+        <!--Web Detail View Controller-->
+        <scene sceneID="mXT-jO-EkQ">
+            <objects>
+                <viewController storyboardIdentifier="WebDetailViewController" id="zPC-C6-9yZ" customClass="WebDetailViewController" customModule="CSVParserRabo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ta5-uI-aVg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46X-WL-B8b">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dS7-q1-E5P"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="46X-WL-B8b" firstAttribute="top" secondItem="dS7-q1-E5P" secondAttribute="top" id="BiL-vU-87C"/>
+                            <constraint firstItem="dS7-q1-E5P" firstAttribute="bottom" secondItem="46X-WL-B8b" secondAttribute="bottom" id="gx5-09-Sjh"/>
+                            <constraint firstItem="46X-WL-B8b" firstAttribute="leading" secondItem="dS7-q1-E5P" secondAttribute="leading" id="jAr-9U-i1u"/>
+                            <constraint firstItem="dS7-q1-E5P" firstAttribute="trailing" secondItem="46X-WL-B8b" secondAttribute="trailing" id="jXE-dd-vCC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="46X-WL-B8b" id="Hvv-dH-en1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Duw-VM-HQ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937" y="10"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6og-nP-xnG">
             <objects>
