@@ -1,5 +1,5 @@
 # CSVParserRabo:
-AIM: Pick or parse given file and load the details in view
+AIM: parse given file and load the details in the app
 
 Architecture: MVVM
 
