@@ -13,13 +13,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var localReadButton: UIButton!
     @IBOutlet weak var uploadCSVButton: UIButton!
+    var collectionView: UICollectionView!
     
     var viewModel = CSVParserViewModel()
     var fileURL: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        //        updateUI()
+        tableView.isHidden = true
+        loadCollectionView()
+        
     }
     
     func updateUI() {
@@ -27,10 +31,40 @@ class ViewController: UIViewController {
         tableView.register(UINib.init(nibName: "CSVDataCell", bundle: nil), forCellReuseIdentifier: "CSVDataCell")
         tableView.delegate = self
         tableView.dataSource = self
+        
+    }
+    
+    func loadCollectionView() {
+        if let fileURL = Bundle.main.url(forResource: "customers-1000", withExtension: "csv") {
+            loadFileData(fileurl: fileURL)
+        } else {
+            showAlert(title: "Error", message: "invalid filepath")
+        }
+        let layout = UICollectionViewFlowLayout()
+               layout.scrollDirection = .vertical
+               
+               collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+               collectionView.dataSource = self
+               collectionView.delegate = self
+               collectionView.register(CSVCell.self, forCellWithReuseIdentifier: "CSVCell")
+               collectionView.register(CSVHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CSVHeaderCell")
+               collectionView.backgroundColor = .white
+               collectionView.alwaysBounceVertical = true
+               collectionView.alwaysBounceHorizontal = true
+               collectionView.translatesAutoresizingMaskIntoConstraints = false
+               
+               view.addSubview(collectionView)
+               
+               NSLayoutConstraint.activate([
+                   collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+                   collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                   collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                   collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+               ])
     }
     
     @IBAction func localReadButtonAction(_ sender: Any) {
-        if let fileURL = Bundle.main.url(forResource: "issues", withExtension: "csv") {
+        if let fileURL = Bundle.main.url(forResource: "customers-1000", withExtension: "csv") {
             loadFileData(fileurl: fileURL)
         } else {
             showAlert(title: "Error", message: "invalid filepath")
@@ -55,7 +89,8 @@ class ViewController: UIViewController {
                 }
                 if result {
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        //                        self.tableView.reloadData()
+                        self.collectionView.reloadData()
                     }
                 } else {
                     showAlert(title: "Error", message: "Error parsing CSV")
@@ -140,5 +175,49 @@ extension ViewController: UIDocumentPickerDelegate {
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         showAlert(title: "Alert", message: "Cancelled with out selecting file")
+    }
+}
+
+//MARK: UICollectionViewDataSource & UICollectionViewDelegateFlowLayout
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.csvData?.rows.count ?? 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.csvData?.rows[section].columns.count ?? 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CSVCell", for: indexPath) as! CSVCell
+        cell.label.text = viewModel.csvData?.rows[indexPath.section].columns[indexPath.item]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CSVHeaderCell", for: indexPath) as! CSVHeaderCell
+            if indexPath.section == 0 {
+                header.label.text = viewModel.csvData?.rows.first?.columns[indexPath.item]
+            }
+            return header
+        }
+        return UICollectionReusableView()
+    }
+    
+    // UICollectionViewDelegateFlowLayout methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numberOfColumns = viewModel.csvData?.rows.first?.columns.count ?? 1
+        let width = collectionView.bounds.width / CGFloat(numberOfColumns)
+        return CGSize(width: width, height: 50) // Adjust height as needed
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            let numberOfColumns = viewModel.csvData?.rows.first?.columns.count ?? 1
+            let width = collectionView.bounds.width / CGFloat(numberOfColumns)
+            return CGSize(width: 75, height: 50) // Adjust height as needed
+        }
+        return CGSize.zero
     }
 }
