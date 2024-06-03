@@ -11,7 +11,6 @@
 		1D2678BD2C0D002A0055F626 /* CSVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2678BC2C0D002A0055F626 /* CSVCell.swift */; };
 		1D2678C12C0D00440055F626 /* CSVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D2678C02C0D00440055F626 /* CSVCell.xib */; };
 		1D2678C32C0D04CB0055F626 /* customers-1000.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1D2678C22C0D04CB0055F626 /* customers-1000.csv */; };
-		1D2678C52C0D06A10055F626 /* CSVHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2678C42C0D06A10055F626 /* CSVHeaderCell.swift */; };
 		1D3179542C05280900C35511 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1D3179532C05280900C35511 /* SwiftCSV */; };
 		1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3179592C052AD700C35511 /* CSVParserViewModel.swift */; };
 		1D31795D2C052B9800C35511 /* issues.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1D31795C2C052B9800C35511 /* issues.csv */; };
@@ -53,7 +52,6 @@
 		1D2678BC2C0D002A0055F626 /* CSVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVCell.swift; sourceTree = "<group>"; };
 		1D2678C02C0D00440055F626 /* CSVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSVCell.xib; sourceTree = "<group>"; };
 		1D2678C22C0D04CB0055F626 /* customers-1000.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "customers-1000.csv"; sourceTree = "<group>"; };
-		1D2678C42C0D06A10055F626 /* CSVHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVHeaderCell.swift; sourceTree = "<group>"; };
 		1D3179592C052AD700C35511 /* CSVParserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserViewModel.swift; sourceTree = "<group>"; };
 		1D31795C2C052B9800C35511 /* issues.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = issues.csv; sourceTree = "<group>"; };
 		1D31795E2C05C21F00C35511 /* CSVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVModel.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 			children = (
 				1D2678BC2C0D002A0055F626 /* CSVCell.swift */,
 				1D2678C02C0D00440055F626 /* CSVCell.xib */,
-				1D2678C42C0D06A10055F626 /* CSVHeaderCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -355,7 +352,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D31795A2C052AD700C35511 /* CSVParserViewModel.swift in Sources */,
-				1D2678C52C0D06A10055F626 /* CSVHeaderCell.swift in Sources */,
 				1D35DD452C04D7C1001484D0 /* ViewController.swift in Sources */,
 				1D2678BD2C0D002A0055F626 /* CSVCell.swift in Sources */,
 				1D3AC5ED2C09E6CD00040B09 /* WebDetailViewController.swift in Sources */,
